@@ -1,7 +1,32 @@
 @extends('layouts.student')
 @extends('layouts.navbarStudent')
 
-<body class="img-bg">
+<script src="{{ asset('js/jam.js') }}"></script>
+<head>
+  <style>
+    #watch {
+        color: rgb(252, 150, 65);
+        position: absolute;
+        z-index: 1;
+        height: 40px;
+        width: 700px;
+        overflow: show;
+        margin: auto;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        font-size: 10vw;
+        -webkit-text-stroke: 3px rgb(210, 65, 36);
+        text-shadow: 4px 4px 10px rgba(210, 65, 36, 0.4),
+            4px 4px 20px rgba(210, 45, 26, 0.4),
+            4px 4px 30px rgba(210, 25, 16, 0.4),
+            4px 4px 40px rgba(210, 15, 06, 0.4);
+    }
+</style>
+
+</head>
+<body class="img-bg" onload="realtimeClock()">
      <!-- Main Content -->
      <div class="container-fluid d-flex justify-content-center position-absolute" style="top:30%">
         <div class="row main-content bg-success text-center">
@@ -31,15 +56,18 @@
 
               <div class="row">
  
-                <form method="POST" action="datang.index" control="" class="form-group">
+                <form method="POST" action="{{ route('students.store') }}" control="" class="form-group">
                  @csrf
-                    <button class=" btn-success w-75 p-1 mt-3 rounded-pill " type="submit">Datang</button>
+                 
+                    <button class=" btn-success w-75 p-1 mt-3 rounded-pill" href="{{ route('absensi.student_home.pulang.index') }}" type="submit">Datang</button>
+                    
+                    
                 </form>
-<hr style="margin-left: -10px">
+                    <hr style="margin-left: -10px">
 
-                <form method="POST" action="tidak_masuk.index" control="" class="form-group">
+                <form method="POST" action="{{ route('absensi.student_home.tidak_masuk.index') }}" control="" class="form-group">
                     @csrf
-                       <button class=" btn-danger w-75  p-1 mt-1 rounded-pill" type="submit">Tidak Masuk</button>
+                       <button class=" btn-danger w-75  p-1 mt-1 rounded-pill" href="{{ route('absensi.student_home.tidak_masuk.index') }}" type="submit">Tidak Masuk</button>
                    </form>
                 
               </div>

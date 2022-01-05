@@ -25,7 +25,7 @@
                 </div>
             </div>
             @csrf
-
+            
             <div>
                 <x-jet-label for="nis" value="{{ __('Nis') }}" />
                 <x-jet-input id="nis" class="block mt-1 w-full" type="text" name="nis" :value="old('nis')" required autofocus autocomplete="nis" />

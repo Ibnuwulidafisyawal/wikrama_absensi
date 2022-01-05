@@ -24,7 +24,7 @@
                     <i class="fas fa-user-edit fs-1" style="color:rgba(0, 0, 0, 0.812);"></i>
                 </div>
             </div>
-            @csrf
+            @csrf_field
 
             @method('PUT')
 

@@ -13,7 +13,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
-        
+
          <div class="col-md-4 text-center company__info">
            <span class="company__logo">
              <h2><img src="{{ asset('img/logoWikrama.jpg') }}" alt="" style="width: 50%; margin-left:22.8%;"></h2>
@@ -28,6 +28,7 @@
              </div>
    
              <div class="row">
+
                <form method="POST" action="absensi.login" control="" class="form-group">
                 @csrf
                  <div class="row">
@@ -43,6 +44,7 @@
                  </div>
    
                </form>
+               
              </div>
            </div>
          </div>

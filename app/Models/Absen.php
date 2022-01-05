@@ -11,5 +11,5 @@ class Absen extends Model
 
      
     protected $table = 'absens';
-    protected $fillable = ['nis', 'jam_kedatangan', 'jam_kepulangan'];
+    protected $fillable = ['nis', 'jam_kedatangan', 'jam_kepulangan','keterangan'];
 }

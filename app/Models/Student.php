@@ -31,4 +31,15 @@ class Student extends Authenticatable
         'username',
         'password',
     ];
+
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    // public function user()
+    // {
+
+    //     return $this->hasMany(User::class);
+    // }
 }

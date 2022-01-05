@@ -18,6 +18,12 @@ return [
         'passwords' => 'users',
     ],
 
+    'defaults' => [
+        'guard' => 'student',
+        'passwords' => 'students',
+    ],
+    
+
     /*
     |--------------------------------------------------------------------------
     | Authentication Guards
@@ -92,6 +98,12 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'students' => [
+            'provider' => 'students',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
