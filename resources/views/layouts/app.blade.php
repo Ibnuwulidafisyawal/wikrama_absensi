@@ -95,9 +95,8 @@
                             </div>
 
                             <div class="sb-sidenav-menu-heading text-light">Data Table </div>
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{ route('dashboard_absen.index')}}">
                                 <div class="sb-nav-link-icon text-light"><i class="bi bi-clipboard-data fs-6"></i></div>
-                                
                                 Data absen student
                             </a>
                                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardAbsenController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DatangController;
 use App\Http\Controllers\LoginStudentController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\RayonController;
 use App\Http\Controllers\RombelController;
 use App\Http\Controllers\StudentHomeController;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +29,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('absensi.login.index');
-});
+})->name('absensi');
 
 
 // Route::get('/', function () {
@@ -53,10 +55,9 @@ Route::resource('register-student', RegisterStudentController::class);
 Route::resource('register-admin', RegisterAdminController::class);
 Route::resource('rayons', RayonController::class);
 Route::resource('rombels', RombelController::class);
+Route::resource('dashboard_absen', DashboardAbsenController::class);
 
 Route::resource('students',StudentHomeController::class); 
-
-// Route::post('absensi.student_home.datang',[StudentHomeController::class, 'store'])->name('absensi/student_home/datang/store'); 
 
 Route::resource('/absensi/student_home/tidak_masuk',StudentHomeController::class); 
 
@@ -82,9 +83,8 @@ Route::group(['middleware' => 'student'], function () {
     Route::post('/absensi/student_home/pulang/keterangan', [StudentHomeController::class, 'pulang'])->name('absensi.student_home.pulang.keterangan');
 
 
-    //Route Keterangan Present Today
-    Route::get('/absensi/student_home/pulang/keterangan', [StudentHomeController::class, 'keterangan'])->name('absensi.student_home.pulang.keterangan');
- 
+    //Route KeteranganHadir Present Today
+    Route::get('/absensi/student_home/pulang/keterangan', [StudentHomeController::class, 'keteranganHadir',])->name('absensi.student_home.pulang.keterangan');
 
     //Route Tampilan present today pulang   
     Route::post('/absensi/student_home/pulang', function () {
@@ -93,11 +93,30 @@ Route::group(['middleware' => 'student'], function () {
 
 
     //Route Tidak masuk Present Today
-    Route::post('/absensi/student_home/tidak_masuk/', function () {
+    Route::get('/absensi/student_home/tidak_masuk/', function () {
         return view('absensi.student_home.tidak_masuk.index');  
     })->name('absensi.student_home.tidak_masuk.index');
 
     Route::post('/absensi/student_home/tidak_masuk/', function () {
         return view('absensi.student_home.tidak_masuk.index');  
     })->name('absensi.student_home.tidak_masuk.index');
+
+
+    // // Route Keterangan Kehadiran Tidak Masuk
+    // Route::get('/absensi/student_home/keterangan', function () {
+    //     return view('absensi.student_home.tidak_masuk.keterangan');  
+    // })->name('absensi.student_home.tidak_masuk.keterangan');
+
+
+    //Route KeteranganTidakHadir Present Today
+    Route::get('/absensi/student_home/keterangan', [StudentHomeController::class, 'keteranganTidakHadir',])->name('absensi.student_home.tidak_masuk.keterangan');
+    Route::post('/absensi/student_home/keterangan', [StudentHomeController::class, 'keteranganTidakHadir',])->name('absensi.student_home.tidak_masuk.keterangan');
+
+    Route::get('absensi/student_home/tidak_masuk', [StudentHomeController::class, 'tidakMasuk',])->name('absensi.student_home.tidak_masuk.index');
+    Route::post('absensi/student_home/tidak_masuk/', [StudentHomeController::class, 'storeTidakMasuk',])->name('absensi.student_home.tidak_masuk.index');
+
+
+    //Route logout
+    Route::get('/logout', [StudentHomeController::class, 'logout'])->name('absensi.login');
+
 });

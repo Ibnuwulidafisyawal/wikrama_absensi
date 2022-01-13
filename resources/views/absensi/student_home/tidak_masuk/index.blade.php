@@ -26,9 +26,9 @@
           <div class="col-md-8 col-xs-12 col-sm-12 login_form ">
             <div class="container-fluid">
               <div class="row">
-                <div class="pull-right">
+                {{-- <div class="pull-right">
                     <a class="btn btn-secondary" href="{{ route('absensi.student_home') }}"><i class="bi bi-arrow-left-circle"></i> Back</a>
-                </div>
+                </div> --}}
                 <h2>Present Today</h2>
                 
               </div>
@@ -37,12 +37,12 @@
           
               <div class="row">
  
-                <form method="POST" action="" control="" class="form-group">
-                    @csrf
-
+                <form method="POST" action="{{ route('absensi.student_home.tidak_masuk.index') }}" control="" class="form-group" enctype="multipart/form-data">
+                  @csrf
+                  
                         <div class="mt-3" >
                             <x-jet-label for="nis" value="{{ __('Nis :') }}" style="margin-left: -93%;"/>
-                            <x-jet-input id="nis" class="block mt-1 w-full form_input" type="text" name="nis" value=" {{ Auth::user()->nis }}" required autofocus autocomplete="nis" disabled/>
+                            <x-jet-input id="nis" class="block mt-1 w-full form_input" type="text" name="nis" value=" {{ Auth::user()->nis }}" required autofocus autocomplete="nis" readonly/>
                         </div>
         
                         <div class="mt-3">
@@ -50,14 +50,12 @@
                             <x-jet-input id="nama" class="block mt-1 w-full form_input" type="text" name="nama" value=" {{ Auth::user()->nama }}" required autofocus autocomplete="nama" disabled/>
                         </div>
 
-                        <x-jet-label class="mt-3" for="nis" value="{{ __('Keterangan :') }}" style="margin-left: -83%;"/>
-                        <select class="form-control" name="rombel" id="rombel">
+                        <x-jet-label class="mt-3" for="keterangan" value="{{ __('Keterangan :') }}" style="margin-left: -83%;"/>
+                        <select class="form-control" name="keterangan" id="keterangan">
                             <option value="" hidden></option>
                             <option value="izin" >Izin</option>
                             <option value="sakit" >Sakit</option>
                         </select>
-
-                    {{-- <input type="date" class="form_input">  --}}
 
                      <div class="row">
                        <button type="submit" class="btn">Submit</button>

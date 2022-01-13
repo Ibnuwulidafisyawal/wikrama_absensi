@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Absen;
+use App\Models\User;
+
 use Illuminate\Http\Request;
 
 class DashboardAbsenController extends Controller
@@ -15,8 +17,10 @@ class DashboardAbsenController extends Controller
     public function index()
     {
         $absens = Absen::latest()->paginate(5);
-        return view('dashboard_absen.index',compact('absens'))->with('i',(request()->input('page',1)-1)*5);
+        return view('dashboard_absen.dashboard',compact('absens'))->with('i', (request()->input('page',1)-1)*5);
+
     }
+
 
     /**
      * Show the form for creating a new resource.

@@ -26,7 +26,7 @@
           <div class="col-md-8 col-xs-12 col-sm-12 login_form ">
             <div class="container-fluid">
               <div class="row">
-                <h2>Present Today  PULANGGG</h2>
+                <h2>Present Today</h2>
               </div>
 
                    
@@ -57,9 +57,10 @@
                   @csrf
                   @method('PUT')
 
-                  <div class="mt-3">
+                  <div class="mt-1">
                     <x-jet-label for="jam_kepulangan" value="{{ __('Jam Kepulangan') }}" style="margin-left: -78%;" />
-                    <select class="block mt-1 w-full form_input " name="jam_kepulangan" id="jam_kepulangan" >
+                    <select class="form-control " name="jam_kepulangan" id="jam_kepulangan" >
+                      <option value="" hidden></option>
                       <option value="15.00">15.00</option>
                       <option value="16.30">16.30</option>
                       <option value="17.00">17.00</option>

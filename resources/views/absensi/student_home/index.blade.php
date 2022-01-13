@@ -61,14 +61,17 @@
                  
                     <button class=" btn-success w-75 p-1 mt-3 rounded-pill" href="{{ route('absensi.student_home.pulang.index') }}" type="submit">Datang</button>
                     
-                    
                 </form>
                     <hr style="margin-left: -10px">
 
-                <form method="POST" action="{{ route('absensi.student_home.tidak_masuk.index') }}" control="" class="form-group">
-                    @csrf
-                       <button class=" btn-danger w-75  p-1 mt-1 rounded-pill" href="{{ route('absensi.student_home.tidak_masuk.index') }}" type="submit">Tidak Masuk</button>
-                   </form>
+                {{-- <form method="POST" action="{{ route('absensi.student_home.tidak_masuk.index') }}" control="" class="form-group"> --}}
+                    {{-- @csrf --}}
+
+                     <a href="{{ route('absensi.student_home.tidak_masuk.index') }}">
+                      <button class=" btn-danger w-75  p-1 mt-1 rounded-pill"  type="submit">Tidak Masuk</button>
+                    </a>  
+                    
+                   {{-- </form> --}}
                 
               </div>
             </div>

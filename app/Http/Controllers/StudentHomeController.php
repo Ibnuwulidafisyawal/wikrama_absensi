@@ -10,6 +10,7 @@ use DateTime;
 use DateTimeZone;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class StudentHomeController extends Controller
 {
@@ -24,6 +25,8 @@ class StudentHomeController extends Controller
         return view('absensi.student_home.index');
     }
 
+
+    //method tampilkan jam kedatangan 
     public function datang()
     {
        
@@ -49,11 +52,49 @@ class StudentHomeController extends Controller
     }
 
 
-
-    public function keterangan()
+    //method halaman tampilkan data keterangan
+    public function keteranganHadir()
     {
-        $absen = Absen::findOrFail(1);
+        $timezone = 'Asia/jakarta'; 
+        $date = new DateTime('now', new DateTimeZone($timezone)); 
+        $tanggal = $date->format('Y-m-d');
+        $localtime = $date->format('H:i:s');
+
+        $absen = Absen::where([
+            ['nis','=',auth()->user()->nis],
+            ['jam_kedatangan','>=',$tanggal." 00:00:00"],
+            ['jam_kedatangan','<=',$tanggal." ".$localtime],
+        ])->first();
+
         return view('absensi.student_home.pulang.keterangan',compact('absen'));
+
+    }
+
+
+    public function keteranganTidakHadir()
+    {
+        // $timezone = 'Asia/jakarta'; 
+        // $date = new DateTime('now', new DateTimeZone($timezone)); 
+        $date = new DateTime(); 
+        $tanggal = $date->format('Y-m-d');
+        $localtime = $date->format('H:i:s');
+
+        $absens = Absen::where([
+            ['nis','=',auth()->user()->nis],
+            ['created_at','>=', $tanggal." 00:00:00"],
+            ['created_at','<=', $tanggal." ".$localtime],
+            ['keterangan','LIKE', '%izin%'],
+        ])
+        ->orWhere([
+            ['nis','=',auth()->user()->nis],
+            ['created_at','>=', $tanggal." 00:00:00"],
+            ['created_at','<=', $tanggal." ".$localtime],
+            ['keterangan','LIKE', '%sakit%'],
+        ])
+        ->orderBy('created_at','desc')
+        ->first();
+
+        return view('absensi.student_home.tidak_masuk.keterangan',compact('absens'));
 
     }
 
@@ -65,6 +106,7 @@ class StudentHomeController extends Controller
     public function create()
     {
 
+        
     }
 
     /**
@@ -104,6 +146,30 @@ class StudentHomeController extends Controller
 
 
 
+    public function storeTidakMasuk(Request $request)
+    {
+
+    $timezone = 'Asia/jakarta'; 
+    $date = new DateTime('now', new DateTimeZone($timezone)); 
+    $tanggal = $date->format('Y-m-d');
+
+        $request->validate([
+            'nis',
+            'keterangan' => 'required',
+        ]);
+
+        Absen::create([
+            'nis' => auth()->user()->nis,
+            'keterangan' => $request->keterangan. " / ".$tanggal,
+        ]);
+
+        // Absen::create($request->all());
+
+    return redirect()->route('absensi.student_home.tidak_masuk.keterangan')->with('Success','Berhasil Input');
+
+    }
+
+
     /**
      * Display the specified resource.
      *
@@ -135,6 +201,9 @@ class StudentHomeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+
+     // ini method input jam kepulangan 
     public function update(Request $request, $id)
     {
         $absen = Absen::findOrFail($id);
@@ -157,4 +226,24 @@ class StudentHomeController extends Controller
     {
         //
     }
+
+
+    public function tidakMasuk()
+    {
+
+        return view('absensi.student_home.tidak_masuk.index');
+        
+    }
+    
+
+    public function logout()
+    {
+        session::flush();
+
+        Auth::logout();
+
+        return redirect('absensi.login');
+    }
+
+
 }

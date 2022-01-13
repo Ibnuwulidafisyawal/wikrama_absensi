@@ -16,7 +16,7 @@ class CreateAbsensTable extends Migration
         Schema::create('absens', function (Blueprint $table) {
             $table->id();
             $table->string('nis');
-            $table->string('jam_kedatangan');
+            $table->string('jam_kedatangan')->nullable();
             $table->string('jam_kepulangan')->nullable();
             $table->string('keterangan')->nullable();
             $table->timestamps();
