@@ -73,8 +73,6 @@ class StudentHomeController extends Controller
 
     public function keteranganTidakHadir()
     {
-        // $timezone = 'Asia/jakarta'; 
-        // $date = new DateTime('now', new DateTimeZone($timezone)); 
         $date = new DateTime(); 
         $tanggal = $date->format('Y-m-d');
         $localtime = $date->format('H:i:s');
@@ -118,7 +116,6 @@ class StudentHomeController extends Controller
     public function store(Request $request)
     {
 
-    // $absen = Absen::findOrFail($id);
     $timezone = 'Asia/jakarta'; 
     $date = new DateTime('now', new DateTimeZone($timezone)); 
     $tanggal = $date->format('Y-m-d');

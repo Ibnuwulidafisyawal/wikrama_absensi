@@ -3,30 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\Absen;
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
-
 use Illuminate\Http\Request;
 
-class DashboardAbsenController extends Controller
+class DashboardAbsenTidakMasukController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-     //Dashboard masuk
     public function index()
     {
- 
-
         $absens = Absen::where([
-            ['jam_kedatangan','!=',null],
-        ])->paginate(5);
-        
-        return view('dashboard_absen.dashboard',compact('absens'))->with('i', (request()->input('page',1)-1)*5);
+            ['keterangan','!=', null]
 
+        ])->paginate(5);
+        return view('dashboard_absen.dashboard-tidak-masuk',compact('absens'))->with('i', (request()->input('page',1)-1)*5);
     }
 
     /**

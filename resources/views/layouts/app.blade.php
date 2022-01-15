@@ -39,10 +39,11 @@
             <!-- Navbar-->
             
             <ul class="navbar-nav ms-auto me-0 me-md-3 my-2 my-md-0 mt-7" >
+                
                 <div>
-                    <div class="font-medium text-white " style="margin-top: 7px">{{ Auth::user()->name }}</div>
+                    <div class= "font-medium text-white " style="margin-top: 7px">{{ Auth::user()->name }}</div>
                 </div>
-
+               
                 <li class="nav-item dropdown ">
                     <a class="nav-link dropdown-toggle " id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -72,10 +73,10 @@
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion"> 
                     <div class="sb-sidenav-menu">
                         <div class="nav">
-                            <div class="sb-sidenav-menu-heading text-light"> Data Absensi</div>
+                            <div class="sb-sidenav-menu-heading text-light"> Dashboard</div>
 
                                 <a class="nav-link" href="{{ route('admin.dashboard') }}">
-                                    <div class="sb-nav-link-icon text-light"><i class="bi bi-pie-chart fs-6"></i></div>
+                                    <div class="sb-nav-link-icon text-light"><i class="fas fa-database fs-6"></i></div>
                                     Dashboard
                                 </a>
 
@@ -90,21 +91,33 @@
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">    
                                     <a class="nav-link " href="{{ route('register-student.index') }}"><i class="bi bi-person-plus-fill"></i> Register Student</a>
-                                    <a class="nav-link" href="{{ route('register-admin.index')}}"><i class="bi bi-person-plus-fill "></i>Register Admin</a>
+                                    <a class="nav-link" href="{{ route('register-admin.index')}}"><i class="bi bi-person-plus-fill "></i> Register Admin</a>
                                 </nav>
                             </div>
 
-                            <div class="sb-sidenav-menu-heading text-light">Data Table </div>
+                            <div class="sb-sidenav-menu-heading text-light">Data Absensi  </div>
+
+                        
                             <a class="nav-link" href="{{ route('dashboard_absen.index')}}">
-                                <div class="sb-nav-link-icon text-light"><i class="bi bi-clipboard-data fs-6"></i></div>
-                                Data absen student
+                                <div class="sb-nav-link-icon text-light"><i class="fas fa-calendar-check fs-6"></i></div>
+                                Absen Hadir
                             </a>
+
+                            <a class="nav-link" href="{{ route('dashboard_absen-tidak-masuk.index')}}">
+                                <div class="sb-nav-link-icon text-light"><i class="fas fa-calendar-times fs-6"></i></div>
+                                Absen Tidak Hadir
+                            </a>
+
+
+                            <div class="sb-sidenav-menu-heading text-light">Data Table </div>
+
+                            
                                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                                     <div class="sb-nav-link-icon text-light"><i class="bi bi-table"></i></div>
                                     Data Table 
                                     <div class="sb-sidenav-collapse-arrow text-light"><i class="fas fa-angle-down fs-6"></i></div>
                                 </a>
-                                
+
                             <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
                                     {{-- <nav class="sb-sidenav-menu-nested nav">
@@ -116,11 +129,13 @@
                                      <nav class="sb-sidenav-menu-nested nav">
                                         <a class="nav-link" href="{{ route('rombels.index') }}">Rombel </a>
                                      </nav>
-                                     
                                     </div>
-                                    
+
                                 </nav>
+                                
                             </div>
+                            
+                            
                         </div>
                     </div>
                 </nav> 
@@ -253,7 +268,7 @@
                 <footer class="py-4 bg-light " style="margin-top: 35%">
                     <div class="container-fluid px-5">
                         <div class="d-flex align-items-center d-flex justify-content-center">
-                            <div class="text-muted ">Copyright &copy; Your Website 2021</div>
+                            <div class="text-muted ">Copyright &copy; Your Website  {{ now()->year }}</div>
                         </div>
                     </div>
                 </footer>

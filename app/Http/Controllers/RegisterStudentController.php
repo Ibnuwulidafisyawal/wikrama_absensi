@@ -139,7 +139,6 @@ class RegisterStudentController extends Controller
             'rombel' => 'required',
             'rayon' => 'required',
             'username'=> 'required|min:5|max:25|unique:students,username,'.$student->id,
-            // 'username' => ['required', 'username', 'max:25', Rule::unique('students')->where($id)->ignore($student->id)],
             'password'=>'required'
             
         ],$messages);

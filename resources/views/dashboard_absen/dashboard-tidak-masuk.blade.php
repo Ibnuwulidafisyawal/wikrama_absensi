@@ -1,9 +1,9 @@
-    @extends('layouts.app')
+@extends('layouts.app')
     
 <div class="row" style="margin-left: 26%; margin-top:8%;">
     <div class="col-lg-10 margin-tb">
         <div class="pull-left">
-            <h2>Absensi Student Hadir</h2>
+            <h2>Absensi Student Tidak Hadir</h2>
         </div>
         
     </div>
@@ -13,8 +13,7 @@
     <tr>
         <th>No</th>
         <th>Nis</th>
-        <th>Tanggal & Jam Kedatangan</th>
-        <th>Jam Kepulangan</th>
+        <th>Tanggal & Keterangan</th>
         <th>Action</th>
     </tr>
 
@@ -25,8 +24,9 @@
     <tr>
         <td>{{ ++$i  }}</td>
         <td>{{ $absen->nis }}</td>
-        <td>{{ $absen->jam_kedatangan }}</td>
-        <td>{{ $absen->jam_kepulangan }}</td>
+        <td>{{ $absen->keterangan }}</td>
+
+
         <td>
             <form action="" method="POST" onsubmit="return confirm('Yakin ingin menghapus?');">
                 <a class="btn btn-primary" href=""><i class="fas fa-edit"></i></a>

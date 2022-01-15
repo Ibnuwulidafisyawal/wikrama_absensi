@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardAbsenController;
+use App\Http\Controllers\DashboardAbsenTidakMasukController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DatangController;
 use App\Http\Controllers\LoginStudentController;
@@ -56,16 +57,19 @@ Route::resource('register-admin', RegisterAdminController::class);
 Route::resource('rayons', RayonController::class);
 Route::resource('rombels', RombelController::class);
 Route::resource('dashboard_absen', DashboardAbsenController::class);
+Route::resource('dashboard_absen-tidak-masuk', DashboardAbsenTidakMasukController::class);
 
 Route::resource('students',StudentHomeController::class); 
-
 Route::resource('/absensi/student_home/tidak_masuk',StudentHomeController::class); 
 
-
-//Route register admin & student in dashboard admin
-Route::group(['middleware' => 'auth'], function () {
+//Route auth dashboard admin
+Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::resource('register-admin', \App\Http\Controllers\RegisterAdminController::class);
     Route::resource('register-student', \App\Http\Controllers\RegisterStudentController::class);
+    Route::resource('rayons', RayonController::class);
+    Route::resource('rombels', RombelController::class);
+    Route::resource('dashboard_absen', DashboardAbsenController::class);
+    Route::resource('dashboard_absen-tidak-masuk', DashboardAbsenTidakMasukController::class);
 });
 
 
@@ -100,12 +104,6 @@ Route::group(['middleware' => 'student'], function () {
     Route::post('/absensi/student_home/tidak_masuk/', function () {
         return view('absensi.student_home.tidak_masuk.index');  
     })->name('absensi.student_home.tidak_masuk.index');
-
-
-    // // Route Keterangan Kehadiran Tidak Masuk
-    // Route::get('/absensi/student_home/keterangan', function () {
-    //     return view('absensi.student_home.tidak_masuk.keterangan');  
-    // })->name('absensi.student_home.tidak_masuk.keterangan');
 
 
     //Route KeteranganTidakHadir Present Today
