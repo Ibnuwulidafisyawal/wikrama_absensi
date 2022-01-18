@@ -82,8 +82,11 @@ class DashboardAbsenTidakMasukController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Absen $absen,$id)
     {
-        //
+        $absen = Absen::findOrFail($id);
+        $absen->delete();
+
+        return redirect()->route('dashboard_absen-tidak-masuk.index')->with('Success', 'Berhasil hapus !');
     }
 }

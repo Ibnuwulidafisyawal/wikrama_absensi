@@ -18,31 +18,38 @@
     </tr>
 
 
-    @foreach ($absens as $absen)
-        
-        
-    <tr>
-        <td>{{ ++$i  }}</td>
-        <td>{{ $absen->nis }}</td>
-        <td>{{ $absen->keterangan }}</td>
-
-
-        <td>
-            <form action="" method="POST" onsubmit="return confirm('Yakin ingin menghapus?');">
-                <a class="btn btn-primary" href=""><i class="fas fa-edit"></i></a>
- 
-                @csrf
-                @method('DELETE')
+    @if (count($absens) > 0)
     
-                <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
-            </form>
-        </td>
-    </tr>
+        @foreach ($absens as $absen)
+            
+        <tr>
+            <td>{{ ++$i  }}</td>
+            <td>{{ $absen->nis }}</td>
+            <td>{{ $absen->keterangan }}</td>
 
-    @endforeach
+
+            <td>
+                <form action="{{ route('dashboard_absen-tidak-masuk.destroy',$absen->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus?');">
+                    <a class="btn btn-primary" href=""><i class="fas fa-edit"></i></a>
+                    @csrf
+                    @method('DELETE')
+        
+                    <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                </form>
+            </td>
+        </tr>
+
+        @endforeach
+    @else
+        <tr>
+            <td colspan="4" class="text-center">
+                Data kosong
+            </td>
+        </tr>
+    @endif
 
 
-    {{!! $absens#region->links() !!}}
+    {{!! $absens->links() !!}}
 
 </table>
                 

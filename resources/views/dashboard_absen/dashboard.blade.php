@@ -19,6 +19,10 @@
     </tr>
 
 
+
+    @if (count($absens) < 0)
+        
+  
     @foreach ($absens as $absen)
         
         
@@ -28,7 +32,7 @@
         <td>{{ $absen->jam_kedatangan }}</td>
         <td>{{ $absen->jam_kepulangan }}</td>
         <td>
-            <form action="" method="POST" onsubmit="return confirm('Yakin ingin menghapus?');">
+            <form action="{{ route('dashboard_absen.destroy',$absen->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus?');">
                 <a class="btn btn-primary" href=""><i class="fas fa-edit"></i></a>
  
                 @csrf
@@ -40,9 +44,18 @@
     </tr>
 
     @endforeach
+        
+    @else
+    <tr>
+        <td colspan="4" class="text-center">
+            Data Kosong
+        </td>
+    </tr>
+        
+    @endif
 
 
-    {{!! $absens#region->links() !!}}
+    {{!! $absens->links() !!}}
 
 </table>
                 

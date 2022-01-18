@@ -51,13 +51,14 @@ Route::post('absensi.login',[LoginStudentController::class, 'authanticate']);
 
 //Route resource dashboard admin
 Route::get('admin.dashboard',[DashboardController::class, 'index']);
-Route::resource('admin.dashboard', DashboardController::class);
+Route::resource('dashboard', DashboardController::class);
 Route::resource('register-student', RegisterStudentController::class);
 Route::resource('register-admin', RegisterAdminController::class);
 Route::resource('rayons', RayonController::class);
 Route::resource('rombels', RombelController::class);
-Route::resource('dashboard_absen', DashboardAbsenController::class);
-Route::resource('dashboard_absen-tidak-masuk', DashboardAbsenTidakMasukController::class);
+ 
+// Route::resource('dashboard_absen', DashboardAbsenController::class);
+// Route::resource('dashboard_absen', DashboardAbsenTidakMasukController::class);
 
 Route::resource('students',StudentHomeController::class); 
 Route::resource('/absensi/student_home/tidak_masuk',StudentHomeController::class); 
@@ -66,6 +67,7 @@ Route::resource('/absensi/student_home/tidak_masuk',StudentHomeController::class
 Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::resource('register-admin', \App\Http\Controllers\RegisterAdminController::class);
     Route::resource('register-student', \App\Http\Controllers\RegisterStudentController::class);
+    Route::resource('dashboard', DashboardController::class);
     Route::resource('rayons', RayonController::class);
     Route::resource('rombels', RombelController::class);
     Route::resource('dashboard_absen', DashboardAbsenController::class);

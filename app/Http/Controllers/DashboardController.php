@@ -6,6 +6,8 @@ use App\Models\Absen;
 use App\Models\Rayon;
 use App\Models\Rombel;
 use App\Models\Student;
+use App\Models\User;
+
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -18,7 +20,13 @@ class DashboardController extends Controller
     public function index()
     {
         $rayons = Rayon::count();
-        return view('admin.dashboard',compact('rayons'));
+        $rombels = Rombel::count();
+        $absens = Absen::count();
+        $userAdmin = User::count();
+        $userStudent = Student::count();
+
+
+        return view('admin.dashboard',compact('rayons','rombels','absens','userAdmin','userStudent'));
     }
 
     /**

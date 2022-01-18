@@ -25,6 +25,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
 
           <script src="{{ asset('js/scripts.js') }}" defer></script>
        
@@ -75,7 +76,7 @@
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading text-light"> Dashboard</div>
 
-                                <a class="nav-link" href="{{ route('admin.dashboard') }}">
+                                <a class="nav-link" href="{{ route('dashboard.index') }}">
                                     <div class="sb-nav-link-icon text-light"><i class="fas fa-database fs-6"></i></div>
                                     Dashboard
                                 </a>

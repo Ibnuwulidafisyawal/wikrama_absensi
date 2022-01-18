@@ -19,8 +19,6 @@ class DashboardAbsenController extends Controller
      //Dashboard masuk
     public function index()
     {
- 
-
         $absens = Absen::where([
             ['jam_kedatangan','!=',null],
         ])->paginate(5);
@@ -90,8 +88,11 @@ class DashboardAbsenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Absen $absen, $id)
     {
-        //
+        $absen = Absen::findOrFail($id);
+        $absen->delete();
+
+        return redirect()->route('dashboard_absen.index')->with('Success','Berhasil hapus !');
     }
 }
