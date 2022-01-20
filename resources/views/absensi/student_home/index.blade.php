@@ -72,11 +72,19 @@
                     </a>  
                     
                    {{-- </form> --}}
+                   
                 
               </div>
             </div>
+            <hr>
+            <footer>
+              <small class="text-danger">Absen Hanya Bisa Dilakukan sekali !!</small>
+            </footer>
           </div>
+         
         </div>
+        
       </div>
-    
+
+     
 </body>

@@ -20,7 +20,7 @@
 
 
 
-    @if (count($absens) < 0)
+    @if (count($absens) > 0)
         
   
     @foreach ($absens as $absen)

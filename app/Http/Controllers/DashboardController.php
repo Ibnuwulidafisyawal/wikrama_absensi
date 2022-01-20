@@ -25,8 +25,17 @@ class DashboardController extends Controller
         $userAdmin = User::count();
         $userStudent = Student::count();
 
+        $absenHadir = Absen::where([
+            ['jam_kedatangan'],
+            ['jam_kepulangan'],
+        ])->count();
 
-        return view('admin.dashboard',compact('rayons','rombels','absens','userAdmin','userStudent'));
+        $absenTidakHadir = Absen::where([
+            ['keterangan'],
+        ])->count();
+
+
+        return view('admin.dashboard',compact('rayons','rombels','absens','userAdmin','userStudent','absenHadir','absenTidakHadir'));
     }
 
     /**

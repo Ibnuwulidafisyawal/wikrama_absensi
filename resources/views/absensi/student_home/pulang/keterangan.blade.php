@@ -3,16 +3,6 @@
 
 <body class="img-bg">
 
-
-    {{-- <div class="container-fluid d-flex justify-content-center position-absolute" >
-            <div class="d-flex justify-content-center align-items-center container">
-                <div class="card py-10 px-20" style="margin-top: 30%">
-                </div>
-        </div>
-    </div>     --}}
-
-
-
      <!-- Main Content -->
      <div class="container-fluid d-flex justify-content-center position-absolute" style="top:30%; ">
         <div class="card " style="width:30%; height:450px; border-color:grey; border-radius:10px;">

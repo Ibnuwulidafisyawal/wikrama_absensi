@@ -72,6 +72,16 @@
               <a class="nav-link" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white">
                 Struktur Organisasi
                </a>
+
+
+
+              <a class="nav-link position-absolute top-1 end-0 start-1" href="{{ route('absensi.login') }}" id="navbarDarkDropdownMenuLink"   style="color: white; ">
+                Logout <i class="fas fa-sign-out-alt"></i>
+               </a>
+
+
+
+               
             </ul>
           </div>
         </div>

@@ -150,17 +150,33 @@ class StudentHomeController extends Controller
     $date = new DateTime('now', new DateTimeZone($timezone)); 
     $tanggal = $date->format('Y-m-d');
 
+
+
+    $presensi = Absen::where([
+
+        ['keterangan','>=',$tanggal],
+        ['keterangan','<=',$tanggal],
+        ['keterangan','=>',$tanggal],
+
+    ])->first();
+
         $request->validate([
             'nis',
             'keterangan' => 'required',
         ]);
 
+        if ($presensi) {
+            return redirect()->route('absensi.student_home.tidak_masuk.keterangan')->with('Success','Berhasil Input');
+
+        }else {
+            
         Absen::create([
             'nis' => auth()->user()->nis,
             'keterangan' => $request->keterangan. " / ".$tanggal,
         ]);
 
-        // Absen::create($request->all());
+        }
+
 
     return redirect()->route('absensi.student_home.tidak_masuk.keterangan')->with('Success','Berhasil Input');
 
