@@ -169,7 +169,6 @@ class StudentHomeController extends Controller
         ]);
     }
 
-
     return redirect()->route('absensi.student_home.tidak_masuk.keterangan')->with('Success','Berhasil Input');
 
     }
