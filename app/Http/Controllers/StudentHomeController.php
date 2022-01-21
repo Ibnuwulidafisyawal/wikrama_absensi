@@ -10,7 +10,9 @@ use DateTime;
 use DateTimeZone;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+
 
 class StudentHomeController extends Controller
 {
@@ -143,39 +145,29 @@ class StudentHomeController extends Controller
 
 
 
-    public function storeTidakMasuk(Request $request)
-    {
+    public function storeTidakMasuk(Request $request){
 
     $timezone = 'Asia/jakarta'; 
     $date = new DateTime('now', new DateTimeZone($timezone)); 
     $tanggal = $date->format('Y-m-d');
-
-
-
+   
     $presensi = Absen::where([
-
-        ['keterangan','>=',$tanggal],
-        ['keterangan','<=',$tanggal],
-        ['keterangan','=>',$tanggal],
-
+        ['keterangan', '=', $request->keterangan. " / ".$tanggal]
     ])->first();
 
-        $request->validate([
-            'nis',
-            'keterangan' => 'required',
-        ]);
+    $request->validate([
+        'nis',
+        'keterangan' => 'required',
+    ]);
 
-        if ($presensi) {
-            return redirect()->route('absensi.student_home.tidak_masuk.keterangan')->with('Success','Berhasil Input');
-
-        }else {
-            
+    if ($presensi) {
+        return redirect()->route('absensi.student_home.tidak_masuk.keterangan')->with('Success','Berhasil Input');
+    }else {
         Absen::create([
             'nis' => auth()->user()->nis,
             'keterangan' => $request->keterangan. " / ".$tanggal,
         ]);
-
-        }
+    }
 
 
     return redirect()->route('absensi.student_home.tidak_masuk.keterangan')->with('Success','Berhasil Input');
